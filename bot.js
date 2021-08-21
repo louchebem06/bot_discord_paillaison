@@ -14,32 +14,26 @@ bot.user.setAvatar('paillasson.jpeg')
 bot.user.setUsername('La paillasse')
 	.then(user => console.log(`My new username is ${user.username}`))
 		.catch(console.error);
-bot.user.setActivity(`42`)
+bot.user.setActivity(`42 | // help`)
 	.then(presence => console.log(`Activity set to ${presence.activities[0].name}`))
 		.catch(console.error)
 });
 
-bot.on('message', function(msg)
-{
-	const message = msg.content;
-	const av = message.split(" "); 
-	if (av[0] && av[0] === '//')
-	{
-		if (av[1] && !av[2])
-			msg.channel.send("Yes but what ?");
-		else if (av[1])
-		{
-			if (av[1] === 'add')
-				msg.guild.channels.create(av[2]);
-			else if (av[1] === 'del')
-			{
-				if (av[2] === 'this')
-					msg.channel.delete();
-			}
-		}
-		else
-			msg.channel.send("please input action");
-	}
-});
+bot.on('guildMemberAdd', function (member) {
+  member.createDM().then(function (channel) {
+    return channel.send('Welcome to Team Paillasson ' + member.displayName + ', this is secret groupe 42Nice')
+  }).catch(console.error)
+})
+
+const ping = require('./commands/ping');
+const add = require('./commands/add');
+const help = require('./commands/help');
+
+bot.on('message', function (message) {
+  let commandUsed =
+    ping.parse(message) ||
+    add.parse(message) ||
+    help.parse(message)
+})
 
 bot.login(config.BOT_TOKEN);
