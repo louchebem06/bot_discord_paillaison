@@ -18,13 +18,14 @@ module.exports = class add extends Command {
 			if (av[2] === "text")
 			{
 				var name = "";
-				for (var i = 2;av[i];i++)
+				for (var i = 3;av[i];i++)
 				{
 					name += av[i];
 					if (av[i + 1])
 						name += "_";
 				}
 				message.guild.channels.create(name);
+				message.channel.send(name + " is create ✅");
 			}
 			else if (av[2] === "vocal")
 			{
