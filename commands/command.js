@@ -12,6 +12,6 @@ module.exports = class command {
     return false
   }
 
-  static action (message) {
+  static action (message, bot) {
   }
 }

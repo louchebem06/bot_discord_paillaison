@@ -15,26 +15,32 @@ module.exports = class add extends Command {
 			message.channel.send("Yes but what ?");
 		else if (av[3])
 		{
+			var name = "";
+			for (var i = 3;av[i];i++)
+			{
+				name += av[i];
+				if (av[i + 1])
+					name += "_";
+			}
 			if (av[2] === "text")
 			{
-				var name = "";
-				for (var i = 3;av[i];i++)
-				{
-					name += av[i];
-					if (av[i + 1])
-						name += "_";
-				}
-				message.guild.channels.create(name);
+				message.guild.channels.create(name, { type: 'text' });
 				message.channel.send(name + " is create ✅");
 			}
-			else if (av[2] === "vocal")
+			else if (av[2] === "category")
 			{
-				message.channel.send("In progress");
+				message.guild.channels.create(name, { type: 'category' });
+				message.channel.send(name + " is create ✅");
+			}
+			else if (av[2] === "voice")
+			{
+				message.guild.channels.create(name, { type: 'voice' });
+				message.channel.send(name + " is create ✅");
 			}
 			else
-				message.channel.send("Please input type [text] or [vocal]");
+				message.channel.send("add [text/category/voice] [channel name]");
 		}
 		else
-			message.channel.send("// add [text/vocal] [channel name]");
+			message.channel.send("add [text/category/voice] [channel name]");
 	}
 }

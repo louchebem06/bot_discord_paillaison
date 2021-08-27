@@ -28,12 +28,16 @@ bot.on('guildMemberAdd', function (member) {
 const ping = require('./commands/ping');
 const add = require('./commands/add');
 const help = require('./commands/help');
+const move = require('./commands/move');
+const remove = require('./commands/remove');
 
 bot.on('message', function (message) {
   let commandUsed =
     ping.parse(message) ||
     add.parse(message) ||
-    help.parse(message)
+    help.parse(message) ||
+    move.parse(message) ||
+    remove.parse(message)
 })
 
 bot.login(config.BOT_TOKEN);

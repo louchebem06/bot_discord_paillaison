@@ -12,8 +12,10 @@ module.exports = class help extends Command {
 		message.channel.send({embed: {
 		    color: 3447003,title: "Help",
 		    description: `// ping
-		    // add [text/vocal] [channel name]
-		    
+		    // add [type] [channel name]
+		    // move [id text/voice] [id category] [int position]
+		    // remove [id]
+
 		    Pour contribuer au bot faite vos pull requests
 		    https://github.com/louchebem06/bot_discord_paillaison
 		    Code du bot : discord.js`,
