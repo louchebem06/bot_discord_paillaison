@@ -13,8 +13,9 @@ module.exports = class help extends Command {
 		    color: 3447003,title: "Help",
 		    description: `// ping
 		    // add [type] [channel name]
-		    // move [id text/voice] [id category] [int position]
-		    // remove [id]
+		    // move [name text/voice] [name category] [int position]
+		    // remove [type] [name]
+		    // info
 
 		    Pour contribuer au bot faite vos pull requests
 		    https://github.com/louchebem06/bot_discord_paillaison

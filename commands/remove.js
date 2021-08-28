@@ -9,38 +9,51 @@ module.exports = class remove extends Command {
 
 	static action (message)
 	{
+		var data = [];
+        message.guild.channels.cache
+            .each(Guild => data.push(
+                {
+                    "type"	: Guild.type,
+                    "name"	: Guild.name,
+                    "id" 	: Guild.id
+                }));
+
 		const msg = message.content;
 		const av = msg.split(" ");
 		if (!av[2])
 			message.channel.send("Yes but what ?");
-		else if (av[2])
+		else if (av[3])
 		{
-			let channel_id = av[2]
-			try
+			for (var i = 0;data[i];i++)
 			{
-				const fetchedChannel = message.guild.channels.cache.get(channel_id);
-				let name_channel = fetchedChannel.name,
-					type_channel = fetchedChannel.type;
-				fetchedChannel.delete();
+				if (av[2] === data[i].type
+					&& av[3] === data[i].name)
+				{
+					try
+					{
+						const fetchedChannel = message.guild.channels.cache.get(data[i].id);
+						fetchedChannel.delete();
 
-				message.channel.send({embed: {
-				    color: 3447003,title: "Delete",
-				    description: `✅ remove succes
-				    Type : ` + type_channel + `
-				    Name : ` + name_channel,
-				    timestamp: new Date(),
-				    footer: {
-				      text: `Delete`
-				    }
-				  }
-				});
-			}
-			catch
-			{
-				message.channel.send("❌ Remove is not possible !");
+						message.channel.send({embed: {
+						    color: 3447003,title: "Delete",
+						    description: `✅ remove succes
+						    Type : ` + data[i].type + `
+						    Name : ` + data[i].name,
+						    timestamp: new Date(),
+						    footer: {
+						      text: `Delete`
+						    }
+						  }
+						});
+					}
+					catch
+					{
+						message.channel.send("❌ Remove is not possible !");
+					}
+				}
 			}
 		}
 		else
-			message.channel.send("remove [id]");
+			message.channel.send("remove [type] [name]");
 	}
 }
