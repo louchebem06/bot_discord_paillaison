@@ -19,31 +19,31 @@ module.exports = class help extends Command
         	.setTimestamp(new Date())
         	.setFooter('Help - Command bot');
 
-            embed.addField("// ping",
-            	`The bot will answer you pong`
-            	,false);
-            embed.addField("// info",
-            	`Return all the server channel info`
-            	,false);
-            embed.addField("// add",
-            	`add [type] [channel name]
-            	Create a channel of the type with its name
-            	type : text, voice, activity`
-            	,false);
-            embed.addField("// move",
-            	`move [type] [category name] [index]
-            	Will move the chanel in the category at index x
-            	type : text, voice, activity`
-            	,false);
-            embed.addField("// remove",
-            	`remove [type] [name]
-            	Suppress the channel
-            	type : text, voice, activity`
-            	,false);
-            embed.addField("// set",
-            	`set name [New USERNAME]
-            	set [activity/image] [value] (in progress)`
-            	,false);
+        embed.addField("// ping",
+        	`The bot will answer you pong`
+        	,false);
+        embed.addField("// info",
+        	`Return all the server channel info`
+        	,false);
+        embed.addField("// add",
+        	`add [type] [channel name]
+        	Create a channel of the type with its name
+        	type : text, voice, activity`
+        	,false);
+        embed.addField("// move",
+        	`move [type] [category name] [index]
+        	Will move the chanel in the category at index x
+        	type : text, voice, activity`
+        	,false);
+        embed.addField("// remove",
+        	`remove [type] [name]
+        	Suppress the channel
+        	type : text, voice, activity`
+        	,false);
+        embed.addField("// set",
+        	`set name [New USERNAME]
+        	set [activity/image] [value] (in progress)`
+        	,false);
 
         message.channel.send({embed: embed});
 	}
