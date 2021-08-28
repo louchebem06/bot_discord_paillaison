@@ -13,7 +13,7 @@ bot.on('ready', () => {
 bot.user.setUsername('La paillasse')
 	.then(user => console.log(`My new username is ${user.username}`))
 	.catch(console.error);
-bot.user.setActivity(`42 | // help`)
+bot.user.setActivity("42 Nice", {type: "COMPETING"})
 	.then(presence => console.log(`Activity set to ${presence.activities[0].name}`))
 	.catch(console.error);
 });
@@ -32,6 +32,7 @@ const help 		= require('./commands/help');
 const move 		= require('./commands/move');
 const remove 	= require('./commands/remove');
 const info 		= require('./commands/info');
+const set 		= require('./commands/set');
 
 bot.on('message', function (message)
 {
@@ -43,7 +44,8 @@ bot.on('message', function (message)
     help.parse(message) 	||
     move.parse(message) 	||
     remove.parse(message)	||
-    info.parse(message)
+    info.parse(message)		||
+    set.parse(message)
 })
 
 bot.login(config.BOT_TOKEN);
