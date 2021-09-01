@@ -33,6 +33,7 @@ const move 		= require('./commands/move');
 const remove 	= require('./commands/remove');
 const info 		= require('./commands/info');
 const set 		= require('./commands/set');
+const log 		= require('./commands/log');
 
 bot.on('message', function (message)
 {
@@ -45,7 +46,8 @@ bot.on('message', function (message)
     move.parse(message) 	||
     remove.parse(message)	||
     info.parse(message)		||
-    set.parse(message)
+    set.parse(message)		||
+    log.parse(message)
 })
 
 bot.login(config.BOT_TOKEN);

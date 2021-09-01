@@ -44,6 +44,10 @@ module.exports = class help extends Command
         	`set name [New USERNAME]
         	set [activity/image] [value] (in progress)`
         	,false);
+        embed.addField("// log",
+        	`log [username]
+        	Print logtime user`
+        	,false);
 
         message.channel.send({embed: embed});
 	}
