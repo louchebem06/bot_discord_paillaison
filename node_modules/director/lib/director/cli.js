@@ -1,16 +1,16 @@
 
 var util = require('util'),
-    BaseRouter = require('./router').Router;
+    director = require('../director');
 
 var Router = exports.Router = function (routes) {
-  BaseRouter.call(this, routes);
+  director.Router.call(this, routes);
   this.recurse = false;
 };
 
 //
-// Inherit from `BaseRouter`.
+// Inherit from `director.Router`.
 //
-util.inherits(Router, BaseRouter);
+util.inherits(Router, director.Router);
 
 //
 // ### function configure (options)
@@ -19,7 +19,7 @@ util.inherits(Router, BaseRouter);
 //
 Router.prototype.configure = function (options) {
   options = options || {};
-  BaseRouter.prototype.configure.call(this, options);
+  director.Router.prototype.configure.call(this, options);
 
   //
   // Delimiter must always be `\s` in CLI routing.

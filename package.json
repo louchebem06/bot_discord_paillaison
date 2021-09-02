@@ -1,5 +1,5 @@
 {
-  "name": "coiffeur",
+  "name": "Bot Paillaisson",
   "version": "1.0.0",
   "description": "",
   "main": "bot.js",
@@ -10,12 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^12.5.3",
-    "forever": "^3.0.4",
+    "forever": "^0.10.10",
     "fs": "0.0.1-security",
     "http": "0.0.1-security",
     "https": "^1.0.0",
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
-    "node-fetch": "^3.0.0"
+    "node-fetch": "^3.0.0",
+    "sharp": "^0.29.0"
   }
 }

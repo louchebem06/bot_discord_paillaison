@@ -28,7 +28,7 @@ function data_req(token, message, user)
 		res.on('end', function ()
 		{
 			const obj = JSON.parse(data);
-			logtime(obj, message);
+			logtime(obj, message, token);
 		});
 	});
 	req.on('error', function(e) {
@@ -37,13 +37,101 @@ function data_req(token, message, user)
 	req.end();
 }
 
-function fmod(a, b)
+function sendEmbed(url_coa, color_coa, last_month, current_month, message, login, full_name, url_image)
 {
-	var x = Math.floor(a/b);
-	return (a - b*x);
+	/*
+		url_coa
+		is svg file
+		svg is not support by discord
+		convert svg to png for view in footer
+	*/
+	const url_intra = `https://profile.intra.42.fr/users/${login}`;
+	const embed = new Discord.MessageEmbed()
+		.setColor(color_coa)
+    	.setTitle(`Logtime ${login}`)
+    	.setAuthor(full_name, url_image, url_intra)
+    	.setTimestamp(new Date())
+    	.setFooter(`Logtime ${login}`, url_coa);
+
+    embed.addField("Last month",
+    	last_month
+    	,false);
+    embed.addField("Current month",
+    	current_month
+    	,false);
+
+    message.channel.send({embed: embed});
 }
 
-function logtime(data, message)
+function coaInfo(token, last_month, current_month, id_user, message, login, full_name, url_image)
+{
+	const options = {
+		host : "api.intra.42.fr",
+		path: `/v2/users/${id_user}/coalitions`,
+		headers: {
+			Authorization: `Bearer ${token}`
+		}
+	};
+	var req = https.request(options, function(res)
+	{
+		res.setEncoding('utf8');
+		var data = ''
+		res.on('data', function (chunk)
+		{
+			data += chunk;
+		});
+		res.on('end', function ()
+		{
+			const coa_info = JSON.parse(data);
+
+			const url_coa 	= coa_info[0].image_url;
+			const color_coa 	= coa_info[0].color;
+
+			sendEmbed(url_coa, color_coa, last_month, current_month, message, login, full_name, url_image);
+		});
+	});
+	req.on('error', function(e) {
+	  message.channel.send("❌ Error : Message create");
+	});
+	req.end();
+}
+
+function userInfo(token, last_month, current_month, id_user, message)
+{
+	setTimeout(() => {console.log("Pause 2 sec pour API 42");}, 2000);
+	const options = {
+		host : "api.intra.42.fr",
+		path: `/v2/users/${id_user}`,
+		headers: {
+			Authorization: `Bearer ${token}`
+		}
+	};
+	var req = https.request(options, function(res)
+	{
+		res.setEncoding('utf8');
+		var data = ''
+		res.on('data', function (chunk)
+		{
+			data += chunk;
+		});
+		res.on('end', function ()
+		{
+			const user_info = JSON.parse(data);
+
+			const login 	= user_info.login;
+			const full_name = user_info.usual_full_name;
+			const url_image = user_info.image_url;
+
+			coaInfo(token, last_month, current_month, id_user, message, login, full_name, url_image);
+		});
+	});
+	req.on('error', function(e) {
+	  message.channel.send("❌ Error : Message create");
+	});
+	req.end();
+}
+
+function logtime(data, message, token)
 {
 	if (data[0])
 	{
@@ -77,28 +165,9 @@ function logtime(data, message)
 		var last_month = moment.duration(final.subtract(moment())).format("h:mm");
 		var current_month = moment.duration(this_final.subtract(moment())).format("h:mm");
 
-		/*
-			add color coa
-			logo coa
-			Photo utilisateur
-			nom
-		*/
+		const id_user = data[0].user.id;
 
-		const embed = new Discord.MessageEmbed()
-			.setColor('#A061D1')
-        	.setTitle('Logtime (in progress)')
-        	.setDescription(`Logtime (in progress)`)
-        	.setTimestamp(new Date())
-        	.setFooter('Logtime (in progress)');
-
-        embed.addField("Last month",
-        	last_month
-        	,false);
-        embed.addField("Current month",
-        	current_month
-        	,false);
-
-        message.channel.send({embed: embed});
+		userInfo(token, last_month, current_month, id_user, message)
 	}
 	else
 		message.channel.send("❌ Error : user is not valid");

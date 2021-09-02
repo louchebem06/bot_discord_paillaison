@@ -3,8 +3,8 @@
  * Copyright(c) 2010 TJ Holowaychuk <tj@vision-media.ca>
  * MIT Licensed
  *
- * Adapted for director
- * (C) 2011 Charlie Robbins, Paolo Fraogmeni, & the Contributors.
+ * Adapted for SS
+ * (C) 2011 Nodejitsu Inc. <info@nodejitsu.com>
  *
  */
 

@@ -1,7 +1,7 @@
 /*
  * accept-test.js: Tests for `content-type`-based routing
  *
- * (C) 2012, Charlie Robbins, Paolo Fragomeni, & the Contributors.
+ * (C) 2012, Nodejitsu Inc.
  * MIT LICENSE
  *
  */
