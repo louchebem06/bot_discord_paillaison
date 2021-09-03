@@ -32,6 +32,7 @@ const remove	= require('./commands/remove');
 const info		= require('./commands/info');
 const set		= require('./commands/set');
 const log		= require('./commands/log');
+const joke		= require('./commands/joke');
 
 bot.on('message', function (message)
 {
@@ -45,7 +46,8 @@ bot.on('message', function (message)
 		remove.parse(message)	||
 		info.parse(message)		||
 		set.parse(message)		||
-		log.parse(message)
+		log.parse(message)		||
+		joke.parse(message)
 })
 
 bot.login(config.BOT_TOKEN);

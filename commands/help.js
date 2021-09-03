@@ -48,6 +48,17 @@ module.exports = class help extends Command
         	`log [username]
         	Print logtime user`
         	,false);
+        embed.addField("// joke",
+        	`joke [category] (if category not filled in random joke)
+        	CATEGORY:
+        	- global
+        	- dev
+        	- dark
+        	- limit
+        	- beauf
+        	- blondes
+        	Go tell you a joke`
+        	,false);
 
         message.channel.send({embed: embed});
 	}

@@ -1,5 +1,6 @@
 {
     "BOT_TOKEN"     : "",
     "BADDEL_TOKEN"  : "",
-    "CONVERTAPI"    : ""
+    "CONVERTAPI"    : "",
+    "BLAGUESAPI"    : ""
 }

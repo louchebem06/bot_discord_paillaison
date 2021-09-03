@@ -9,10 +9,11 @@
   "author": "Bryan Ledda",
   "license": "ISC",
   "dependencies": {
+    "blagues-api": "^2.1.0",
     "convertapi": "^1.11.1",
     "convertapi-node": "^1.0.2",
     "discord.js": "^12.5.3",
-    "forever": "^0.10.10",
+    "forever": "^4.0.1",
     "http": "0.0.1-security",
     "https": "^1.0.0",
     "moment": "^2.29.1",
