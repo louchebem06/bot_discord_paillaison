@@ -1,4 +1,5 @@
 {
-    "BOT_TOKEN": "",
-    "BADDEL_TOKEN": ""
+    "BOT_TOKEN"     : "",
+    "BADDEL_TOKEN"  : "",
+    "CONVERTAPI"    : ""
 }

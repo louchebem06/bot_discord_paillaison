@@ -3,8 +3,9 @@ const config 		= require("../config.json");
 const http 			= require('http');
 const https 		= require('https');
 const moment		= require('moment');
-const momentFormat 	= require("moment-duration-format");
+const momentFormat	= require("moment-duration-format");
 const Discord 		= require("discord.js");
+const convertapi 	= require('convertapi')(config.CONVERTAPI);	
 
 momentFormat(moment);
 
@@ -74,14 +75,9 @@ function api42(token, url)
 
 function sendEmbed(token, message, login)
 {
-	/*
-		url_coa
-		is svg file
-		svg is not support by discord
-		convert svg to png for view in footer
-	*/
-	const err_user	= "❌ Error : User not found";
-	const err_api	= "❌ Error : Too many request 42 API";
+	const err_user			= "❌ Error : User not found";
+	const err_api			= "❌ Error : Too many request 42 API";
+	const err_apiconvert	= "❌ Error : The quota of 1500 on convert api has been exceeded";
 
 	var req_locations = api42(token, `/v2/users/${login}/locations?per_page=100`);
 	req_locations.then((locations)=>
@@ -97,27 +93,36 @@ function sendEmbed(token, message, login)
 				req_user_info.then((user_info)=>
 				{
 					var hours = logtime(locations);
-					// const url_coa 	= coa_info[0].image_url;
+					const url_coa 		= coa_info[0].image_url;
 					const color_coa 	= coa_info[0].color;
 					const full_name 	= user_info.usual_full_name;
 					const url_image 	= user_info.image_url;
 					const url_intra 	= `https://profile.intra.42.fr/users/${login}`;
 
-					const embed = new Discord.MessageEmbed()
+					convertapi.convert('png', {
+					    File: url_coa,
+					    FileName: login
+					}, 'svg').then(function(result)
+					{
+						const coa_png = result.response.Files[0].Url;
+
+						const embed = new Discord.MessageEmbed()
 						.setColor(color_coa)
-						.setTitle(`Logtime ${login}`)
 						.setAuthor(full_name, url_image, url_intra)
 						.setTimestamp(new Date())
-						//.setFooter(`Logtime ${login}`);
+						.setThumbnail("https://www.42nice.fr/static/images/logo-white.png")
+						
+						embed.setFooter(`Logtime ${login}`, coa_png);
 
-					embed.addField("Last month",
-						hours.last_month
-						,false);
-					embed.addField("Current month",
-						hours.current_month
-						,false);
+						embed.addField("Last month",
+							hours.last_month
+							,false);
+						embed.addField("Current month",
+							hours.current_month
+							,false);
 
-					message.channel.send({embed: embed});
+						message.channel.send({embed: embed});
+					}).catch((error)=>{message.channel.send(err_apiconvert)});
 				});
 				req_user_info.catch((error)=>{message.channel.send(err_api)});
 			});

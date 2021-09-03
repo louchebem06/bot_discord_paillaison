@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "convertapi-node": "^1.0.2",
     "discord.js": "^12.5.3",
     "forever": "^0.10.10",
     "http": "0.0.1-security",
