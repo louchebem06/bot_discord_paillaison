@@ -59,6 +59,9 @@ module.exports = class help extends Command
         	- blondes
         	Go tell you a joke`
         	,false);
+        embed.addField("// horoscope",
+        	`description in progress`
+        	,false);
 
         message.channel.send({embed: embed});
 	}

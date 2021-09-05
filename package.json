@@ -9,6 +9,7 @@
   "author": "Bryan Ledda",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.3",
     "blagues-api": "^2.1.0",
     "convertapi": "^1.11.1",
     "convertapi-node": "^1.0.2",
