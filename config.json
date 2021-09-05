@@ -1,7 +1,7 @@
 {
-    "BOT_TOKEN"		: "ODE1MjYxNDQ3ODk4NTI5ODMy.YDp1ZA.gCcBCeZVDOtwVrTm5xSoeg-4AnM",
-    "BADDEL_TOKEN"	: "lfkjsdlkjajhdlkajhjdklhakjsdh9823749823jhfkjsadhf734982dklfjh273948",
-    "CONVERTAPI"    : "jgAau2HDgffRhsrR",
-    "BLAGUESAPI"    : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMzI5MjE3Mjk3ODE2MzU0ODE4IiwibGltaXQiOjEwMCwia2V5IjoiS3BGRUFtRVhwbEp2N0laUzNXQmJVbzBsbUpoclVIWDVlQU5qQlE2MmRYYlU5UWcybmkiLCJjcmVhdGVkX2F0IjoiMjAyMS0wOS0wM1QyMTo1ODo0OSswMDowMCIsImlhdCI6MTYzMDcwNjMyOX0.9gp-NvIiH1M3WeJfdQ9pu4PriyT-bAKk5i2qvKM_Xz0",
-    "RAPIDAPI"		: "901363925cmsh231e13a76441753p189dc6jsnb60ba4192445"
+    "BOT_TOKEN"		: "",
+    "BADDEL_TOKEN"	: "",
+    "CONVERTAPI"    : "",
+    "BLAGUESAPI"    : "",
+    "RAPIDAPI"		: ""
 }
