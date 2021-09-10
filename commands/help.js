@@ -60,7 +60,8 @@ module.exports = class help extends Command
         	Go tell you a joke`
         	,false);
         embed.addField("// horoscope",
-        	`description in progress`
+        	`horoscope for list
+        	Your horoscope today (in english)`
         	,false);
 
         message.channel.send({embed: embed});
