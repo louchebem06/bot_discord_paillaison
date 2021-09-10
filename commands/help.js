@@ -59,6 +59,10 @@ module.exports = class help extends Command
         	- blondes
         	Go tell you a joke`
         	,false);
+        embed.addField("// horoscope",
+        	`horoscope for list
+        	Your horoscope today (in english)`
+        	,false);
 
         message.channel.send({embed: embed});
 	}

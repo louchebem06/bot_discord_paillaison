@@ -24,15 +24,16 @@ bot.on('guildMemberAdd', function (member){
 	}).catch(console.error)
 })
 
-const ping		= require('./commands/ping');
-const add		= require('./commands/add');
-const help		= require('./commands/help');
-const move		= require('./commands/move');
-const remove	= require('./commands/remove');
-const info		= require('./commands/info');
-const set		= require('./commands/set');
-const log		= require('./commands/log');
-const joke		= require('./commands/joke');
+const ping			= require('./commands/ping');
+const add			= require('./commands/add');
+const help			= require('./commands/help');
+const move			= require('./commands/move');
+const remove		= require('./commands/remove');
+const info			= require('./commands/info');
+const set			= require('./commands/set');
+const log			= require('./commands/log');
+const joke			= require('./commands/joke');
+const horoscope		= require('./commands/horoscope');
 
 bot.on('message', function (message)
 {
@@ -47,7 +48,8 @@ bot.on('message', function (message)
 		info.parse(message)		||
 		set.parse(message)		||
 		log.parse(message)		||
-		joke.parse(message)
+		joke.parse(message)		||
+		horoscope.parse(message)
 })
 
 bot.login(config.BOT_TOKEN);
